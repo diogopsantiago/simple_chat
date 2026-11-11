@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 240, 242, 245;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+/* WhatsApp chat background pattern simulation */
+.whatsapp-bg {
+  background-color: #efeae2;
+  background-image: radial-gradient(#d1dbd6 0.75px, transparent 0.75px), radial-gradient(#d1dbd6 0.75px, #efeae2 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
