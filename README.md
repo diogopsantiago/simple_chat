@@ -1,104 +1,62 @@
-# Chat Assistant (WhatsApp Style) - Next.js
+# Chat Simples - Assistente Virtual Nélia
 
-Este é um projeto simples de interface de chat estilo WhatsApp desenvolvido com **Next.js** e estilizado com **Tailwind CSS**. O objetivo é servir como uma base intuitiva de atendimento/assistente virtual, ideal para ser implantada rapidamente na Vercel.
+Este é um protótipo de chat de atendimento ao cliente com interface moderna inspirada no WhatsApp, desenvolvido com **Next.js 14**, **Tailwind CSS** e **Lucide React**.
 
----
+O projeto conta agora com a assistente virtual **Nélia**, que gerencia fluxos complexos de atendimento de forma automatizada através de uma máquina de estados robusta.
 
 ## 🚀 Funcionalidades
 
-- **Interface Estilo WhatsApp:** Design limpo e responsivo com balões de mensagem, horário e layout familiar.
-- **Mensagem de Boas-Vindas Automática:** Assim que o usuário entra no chat, a assistente se apresenta e exibe um menu de opções.
-- **Menu Interativo (4 Opções):**
-  1. ℹ️ Informações sobre o serviço
-  2. 🛠️ Suporte técnico
-  3. 💰 Planos e Preços
-  4. 👤 Falar com atendente
-- **Respostas Pré-definidas:** Ao selecionar uma opção do menu, o chat responde com uma mensagem padrão correspondente.
-- **Modo Eco (Echo Bot):** Após responder à opção do menu, qualquer mensagem adicional digitada pelo usuário será respondida no formato:
-  > `Minha resposta é: {mensagem original}`
-- **Comando /Menu:** Durante o Modo Eco, ao digitar `/menu`, o assistente apresenta novamente o menu de opções interativo, aceita uma nova resposta do menu como no início e, em seguida, retorna automaticamente ao Modo Eco.
+-   **Interface Estilo WhatsApp:** Design limpo, responsivo e familiar com balões de mensagem, horários e layout otimizado para mobile e desktop.
+-   **Máquina de Estados:** Gerenciamento inteligente da conversação através de estados (Identificação, Menu, Pedidos, Tickets).
+-   **Assistente Nélia:**
+    -   **Fluxo de Onboarding:** Coleta e validação de Nome, E-mail e CPF.
+    -   **Consulta de Pedidos:** Listagem dinâmica e detalhes de status de entrega (no prazo, atrasado, etc.).
+    -   **Gestão de Tickets:** Verificação de chamados de suporte com simulação de retornos.
+    -   **Transbordo Inteligente:** Lógica baseada em horário comercial (Seg-Sex, 09h às 18h) para transferência humana ou abertura de ticket offline.
+    -   **Pesquisa de Satisfação:** Coleta de feedback (1 a 5) e geração de protocolo único ao final do atendimento.
+-   **Comandos Globais:** Uso de `/menu` ou `0` para retornar ao início a qualquer momento.
 
----
+## 📄 Documentação de Fluxos
+
+As regras de negócio, textos da Nélia e caminhos de conversação estão detalhadamente documentados no arquivo:
+👉 **[FLOWS.md](./FLOWS.md)**
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **[Next.js](https://nextjs.org/)** (App Router ou Pages Router)
-- **[React](https://react.dev/)**
-- **[Tailwind CSS](https://tailwindcss.com/)** (para estilização rápida do chat estilo WhatsApp)
-- **[Lucide React](https://lucide.dev/)** / **Icons** (opcional, para ícones de envio e status)
+-   **Next.js 14** (App Router)
+-   **Tailwind CSS** (Estilização)
+-   **Lucide React** (Ícones)
+-   **React Hooks** (`useState`, `useEffect`, `useRef`)
 
----
-
-## 📁 Estrutura Esperada do Projeto
-
-```text
-├── public/
-├── src/
-│   └── app/
-│       ├── globals.css      # Estilos globais do Tailwind CSS
-│       ├── layout.js        # Layout da aplicação
-│       └── page.js          # Rota principal (Index) com a lógica e tela do Chat
-├── package.json
-├── tailwind.config.js
-└── README.md
-```
-
----
-
-## ⚙️ Como Lógica do Chat Funciona
-
-1. **Estado Inicial:** O estado das mensagens inicia com a mensagem da assistente contendo a apresentação e os botões/texto com as 4 opções.
-2. **Seleção de Opção:** Se o estado `menuSelecionado` for falso, a primeira interação valida a opção escolhida (1, 2, 3 ou 4) e envia a resposta equivalente.
-3. **Fluxo Contínuo e Comando /Menu:** Após a seleção inicial, o assistente entra no modo eco. A qualquer momento, o usuário pode digitar `/menu` para reexibir o menu de opções, fazer uma nova seleção e retornar ao modo eco.
-
----
-
-## 💻 Como Executar Localmente
+## 🔧 Como Executar Localmente
 
 ### Pré-requisitos
 - **Node.js** (versão 18.x ou superior)
-- **npm**, **yarn** ou **pnpm**
+- **npm**
 
 ### Passo a Passo
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
-   ```
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/seu-repositorio.git
+    cd seu-repositorio
+    ```
 
-2. **Instale as dependências:**
-   ```bash
-   npm install
-   # ou
-   yarn install
-   ```
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
 
-3. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   npm run dev
-   # ou
-   yarn dev
-   ```
+3.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
 
-4. Open `http://localhost:3000` no seu navegador para ver o chat funcionando.
+4.  Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
----
+## 💡 Simulação de Dados
 
-## 🌐 Deploy na Vercel
-
-Por ter sido construído com Next.js, a publicação na Vercel é extremamente direta:
-
-1. Faça **Push** do código para o seu repositório no GitHub/GitLab/Bitbucket.
-2. Acesse o painel da [Vercel](https://vercel.com/) e clique em **"Add New" > "Project"**.
-3. Importe o repositório do seu projeto.
-4. Mantenha as configurações padrão detectadas para Next.js.
-5. Clique em **Deploy**.
-
----
-
-## 📝 Próximos Passos (Melhorias Futuras)
-
-- [ ] Integração com uma API real de Inteligência Artificial (ex: OpenAI / Gemini).
-- [ ] Persistência de dados no banco de dados ou `localStorage`.
-- [ ] Adição de áudio e envio de anexos.
+Para testar os diferentes caminhos da Nélia:
+-   **CPF Não Encontrado:** Digite `11111111111` no fluxo inicial para ver o tratamento de erro.
+-   **Horário de Atendimento:** A lógica de transbordo utiliza o horário local do seu computador.
+-   **Pedidos/Tickets:** São gerados dinamicamente para simular uma integração com backend.
