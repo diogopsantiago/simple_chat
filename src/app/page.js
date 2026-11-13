@@ -168,17 +168,30 @@ export default function ChatPage() {
         break;
 
       case CHAT_STATES.TICKETS:
-        const ticketId = input.replace('#TK', '');
-        if (['1', '2', '3'].includes(ticketId) || ticketId.length === 4) {
-          showTicketDetail(ticketId);
+        const cleanTicketInput = input.replace('#', '').toUpperCase();
+        if (['1', '2', '3'].includes(cleanTicketInput) || cleanTicketInput.startsWith('TK') || cleanTicketInput.length >= 4) {
+          showTicketDetail(cleanTicketInput);
+        } else if (cleanInput === 'm' || cleanInput === 'voltar') {
+          showMenu();
         } else {
           addBotMessage("Não entendi. Por favor, escolha um ticket da lista ou digite /menu para voltar.");
         }
         break;
 
       case CHAT_STATES.ORDER_DETAIL:
+        if (cleanInput === '1' || cleanInput === 'pedidos') {
+          showOrders();
+        } else if (cleanInput === 'm' || cleanInput === 'voltar') {
+          showMenu();
+        } else {
+          addBotMessage("Deseja realizar outra consulta? Digite /menu ou escolha uma opção acima.");
+        }
+        break;
+
       case CHAT_STATES.TICKET_DETAIL:
-        if (cleanInput === 'm' || cleanInput === 'voltar') {
+        if (cleanInput === '2' || cleanInput === 'tickets') {
+          showTickets();
+        } else if (cleanInput === 'm' || cleanInput === 'voltar') {
           showMenu();
         } else {
           addBotMessage("Deseja realizar outra consulta? Digite /menu ou escolha uma opção acima.");
